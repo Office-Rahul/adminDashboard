@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosMenu } from "react-icons/io";
 import { MdDownload } from "react-icons/md";
+import { BsBoxArrowInRight } from "react-icons/bs";
 
 const Header = () => {
   return (
@@ -20,8 +21,9 @@ const Header = () => {
       </div>
 
       <div>
-        <button className="bg-red-500 text-white px-4 py-2 rounded">
+        <button className="bg-red-500 text-white px-4 py-2 rounded flex justify-center items-center gap-1 font-bold ">
           Logout
+          <span className="text-xl "><BsBoxArrowInRight /></span>
         </button>
       </div>
     </header>
