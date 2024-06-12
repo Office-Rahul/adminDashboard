@@ -8,7 +8,7 @@ const Header = () => {
     <header className="bg-white shadow p-4 flex justify-between items-center ">
       <div className="flex justify-center items-center gap-16">
       <div className="flex justify-center items-center gap-5">
-        <IoIosMenu />
+      <span className="text-2xl"> <IoIosMenu /></span>
         Home
       </div>
       <button className="bg-blue-500 text-white px-4 py-2 rounded flex justify-center items-center gap-1 font-medium">

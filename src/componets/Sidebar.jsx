@@ -31,7 +31,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-white shadow-2xl w-64 h-screen">
+    <div className="bg-white shadow-2xl w-64 ">
       <div className="p-4">
         <h1 className="text-xl font-bold flex justify-start items-center gap-2 text-gray-500">
           <span className="text-gray-500 text-2xl shadow rounded-full">
@@ -48,7 +48,7 @@ const Sidebar = () => {
               href="/dashboard"
               className="flex justify-start items-center gap-2 bg-violet-400 rounded-full text-white py-2 px-3 transition-colors duration-300"
             >
-              <MdOutlineSpeed />
+              <span className="text-2xl"><MdOutlineSpeed /></span>
               Dashboard
             </a>
           </li>
@@ -57,7 +57,7 @@ const Sidebar = () => {
               href="/distributor"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <FaUser />
+               <span className="text-2xl"><FaUser /></span>
               Add Distributors
             </a>
           </li>
@@ -66,7 +66,7 @@ const Sidebar = () => {
               href="/users"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <FaUser />
+             <span className="text-2xl"><FaUser /></span>
               Add Users
             </a>
           </li>
@@ -75,7 +75,7 @@ const Sidebar = () => {
               href="/amountrate"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <FaGamepad />
+              <span className="text-2xl"><FaGamepad /></span>
               Amount Rate
             </a>
           </li>
@@ -84,7 +84,7 @@ const Sidebar = () => {
               href="/livegame"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <FaWrench />
+              <span className="text-2xl"><FaWrench /></span>
               Live Game
             </a>
           </li>
@@ -93,7 +93,7 @@ const Sidebar = () => {
               href="/ntpreport"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <FaWrench />
+             <span className="text-2xl"><FaWrench /></span>
               NTP Report
             </a>
           </li>
@@ -102,18 +102,19 @@ const Sidebar = () => {
             onClick={toggleResults}
           >
             <div className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300">
-              <FaRegCaretSquareDown />
+            <span className="text-2xl"> <FaRegCaretSquareDown /></span>
               <span>Results</span>
             </div>
-            <span>{isResultsOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
+            <span className="">{isResultsOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
           </li>
           {isResultsOpen && (
-            <ul className="pl-8">
+            <ul className="px-8">
               <li className="py-2">
                 <a
                   href="/results/sub1"
                   className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
                 >
+                    <span className="text-2xl"><MdOutlineSettingsSuggest /></span>
                   Game
                 </a>
               </li>
@@ -124,19 +125,20 @@ const Sidebar = () => {
             onClick={toggleSales}
           >
             <div className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300">
-              <FaRegCaretSquareDown />
+            <span className="text-2xl"><FaRegCaretSquareDown /></span>
               <span>Sales</span>
             </div>
             <span>{isSalesOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
           </li>
           {isSalesOpen && (
-            <ul className="pl-8">
+            <ul className="px-8">
               <li className="py-2">
                 <a
                   href="/sales/sub1"
                   className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
                 >
-                  Sub Sales 1
+                  <span className="text-2xl"><MdOutlineSettingsSuggest /></span>
+                  Game
                 </a>
               </li>
             </ul>
@@ -146,19 +148,29 @@ const Sidebar = () => {
             onClick={toggleCommission}
           >
             <div className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300">
-              <FaRegCaretSquareDown />
+            <span className="text-2xl"><FaRegCaretSquareDown /></span>
               <span>Commission</span>
             </div>
             <span>{isCommissionOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
           </li>
           {isCommissionOpen && (
-            <ul className="pl-8">
+            <ul className="px-8">
               <li className="py-2">
                 <a
                   href="/commission/sub1"
                   className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
                 >
-                  Sub Commission 1
+                  <span className="text-2xl"> <FaWrench /></span>
+                  Distributor
+                </a>
+              </li>
+              <li className="py-2 ">
+                <a
+                  href="/commission/sub1"
+                  className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
+                >
+                  <span className="text-2xl"><MdOutlineSettingsSuggest /></span>
+                  Retailer
                 </a>
               </li>
             </ul>
@@ -168,7 +180,7 @@ const Sidebar = () => {
               href="/changepassword"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <MdOutlineSettingsSuggest />
+              <span className="text-2xl"><MdOutlineSettingsSuggest /></span>
               Change Password
             </a>
           </li>
@@ -177,7 +189,7 @@ const Sidebar = () => {
               href="/resultsettings"
               className="flex justify-start items-center gap-2 hover:bg-violet-400 hover:rounded-full hover:text-white transition-colors duration-300"
             >
-              <MdOutlineSettingsSuggest />
+                <span className="text-2xl"><MdOutlineSettingsSuggest /></span>
               Result Settings
             </a>
           </li>
