@@ -2,7 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const Wallet = ({ value, userId }) => {
-  const [wallet1, setWallet1] = useState(0);
+  if(value === undefined){
+    value = 0;
+  }
+  const [wallet1, setWallet1] = useState(value);
 
   const increment = (setFunction, value) => {
     setFunction(prev => prev + value);

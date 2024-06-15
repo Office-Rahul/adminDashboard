@@ -64,6 +64,39 @@ const User = () => {
       console.log("Error adding/updating user:", error);
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // Assuming usersToAdd is an array of objects containing user information
+  //     const promises = usersToAdd.map(user =>
+  //       axios.post("http://localhost:8000/createAdminUser", {
+  //         userName: user.userName,
+  //         password: user.password,
+  //         commission: user.commission,
+  //       })
+  //     );
+  
+  //     const results = await Promise.all(promises);
+  
+  //     // Check which requests were successful
+  //     const successfulAdds = results.filter(res => res.data.status === true);
+  
+  //     if (successfulAdds.length === usersToAdd.length) {
+  //       alert("All users added successfully");
+  //       fetchData(); // Refresh user list after adding users
+  //       setUsersToAdd([]); // Clear usersToAdd state
+  //     } else {
+  //       alert("Some users failed to add. Please try again.");
+  //       // Optionally, handle the case where some users were not added successfully
+  //       // You might want to display which users failed and allow the user to retry
+  //     }
+  //   } catch (error) {
+  //     console.log("Error adding users:", error);
+  //     // Handle errors such as network issues, server errors, etc.
+  //   }
+  // };
+
+
 
   const handleEdit = (user) => {
     setUserName(user.userName);
@@ -85,8 +118,6 @@ const User = () => {
       console.log("Error deleting user:", error);
     }
   };
-
- 
 
   const handleView = (user) => {
     setViewingUser(user);
@@ -144,7 +175,7 @@ const User = () => {
               <div className="mb-4">
                 <label className="block text-gray-700">Commission</label>
                 <input
-                  type="text"
+                  type="number"
                   className="w-full px-3 py-2 border rounded"
                   value={commission}
                   onChange={(e) => setCommission(e.target.value)}
@@ -199,7 +230,9 @@ const User = () => {
                       />
                     </td>
                     <td className="px-4 py-2 border">{user.commission}</td>
-                    <td className="px-4 py-2 border">{user.percentage || "0.00"}</td>
+                    <td className="px-4 py-2 border">
+                      {user.percentage || "0.00"}
+                    </td>
                     <td className="px-4 py-2 border">
                       <Wallet value={user.wallet} userId={user._id} />
                     </td>
@@ -264,71 +297,69 @@ const User = () => {
         </table>
       </div>
       {viewingUser && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div className="bg-white p-8 rounded shadow-lg w-1/2">
-      <h2 className="text-xl font-semibold mb-4">User Details</h2>
-      <form>
-        <div className="flex mb-4">
-          <div className="w-1/2 pr-2">
-            <label className="block text-gray-700">Username:</label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border rounded"
-              value={viewingUser.userName}
-              readOnly // Ensure the username is read-only
-            />
-          </div>
-          <div className="w-1/2 pl-2">
-            <label className="block text-gray-700">Password:</label>
-            <input
-              type="password"
-              className="w-full px-3 py-2 border rounded"
-              value={viewingUser.password}
-              readOnly // Ensure the password is read-only
-            />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded shadow-lg w-1/2">
+            <h2 className="text-xl font-semibold mb-4">User Details</h2>
+            <form>
+              <div className="flex mb-4">
+                <div className="w-1/2 pr-2">
+                  <label className="block text-gray-700">Username:</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border rounded"
+                    value={viewingUser.userName}
+                    readOnly // Ensure the username is read-only
+                  />
+                </div>
+                <div className="w-1/2 pl-2">
+                  <label className="block text-gray-700">Password:</label>
+                  <input
+                    type="password"
+                    className="w-full px-3 py-2 border rounded"
+                    value={viewingUser.password}
+                    readOnly // Ensure the password is read-only
+                  />
+                </div>
+              </div>
+              <div className="flex mb-4">
+                <div className="w-1/2 pr-2">
+                  <label className="block text-gray-700">Commission:</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border rounded"
+                    value={viewingUser.commission}
+                    readOnly // Ensure the commission is read-only
+                  />
+                </div>
+                <div className="w-1/2 pl-2">
+                  <label className="block text-gray-700">Status:</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border rounded"
+                    value={viewingUser.status ? "Active" : "Inactive"}
+                    readOnly // Ensure the status is read-only
+                  />
+                </div>
+              </div>
+              <div className="mb-4 w-1/2 ">
+                <label className="block text-gray-700">Wallet:</label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border rounded"
+                  value={viewingUser.wallet}
+                  readOnly // Ensure the wallet is read-only
+                />
+              </div>
+              <button
+                className="mt-4 px-4 py-2 text-white bg-red-500 rounded"
+                onClick={closeModal}
+              >
+                Close
+              </button>
+            </form>
           </div>
         </div>
-        <div className="flex mb-4">
-          <div className="w-1/2 pr-2">
-            <label className="block text-gray-700">Commission:</label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border rounded"
-              value={viewingUser.commission}
-              readOnly // Ensure the commission is read-only
-            />
-          </div>
-          <div className="w-1/2 pl-2">
-            <label className="block text-gray-700">Status:</label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border rounded"
-              value={viewingUser.status ? "Active" : "Inactive"}
-              readOnly // Ensure the status is read-only
-            />
-          </div>
-        </div>
-        <div className="mb-4 w-1/2 ">
-          <label className="block text-gray-700">Wallet:</label>
-          <input
-            type="text"
-            className="w-full px-3 py-2 border rounded"
-            value={viewingUser.wallet}
-            readOnly // Ensure the wallet is read-only
-          />
-        </div>
-        <button
-          className="mt-4 px-4 py-2 text-white bg-red-500 rounded"
-          onClick={closeModal}
-        >
-          Close
-        </button>
-      </form>
-    </div>
-  </div>
-)}
-
-
+      )}
     </div>
   );
 };
