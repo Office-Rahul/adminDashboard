@@ -1,40 +1,101 @@
+import User from "../models/userController.js";
 
-import adminModel from '../models/userModel.js'
-
-export const createPostData = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-
-        const userData = new adminModel({
-            name,
-            email,
-            password
-        });
-
-        await userData.save();
-        return res.status(200).send({ status: true, data: userData });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send({ status: false, message: 'Server error while creating user' });
-    }
+// export const createAdminUser = async (req, res) => {
+//   try {
+//     const { userName, password, percentage } = req.body;
+//     const data = await User.create(req.body);
+//     return res.status(201).send({ status: true, data: data });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({ status: false, message: err.message });
+//   }
+// };
+export const createAdminUser = async (req, res) => {
+  const { userName, password, commission } = req.body;
+  try {
+    const newUser = new User({ userName, password, commission });
+    await newUser.save();
+    res.status(201).json({ status: true, user: newUser });
+  } catch (error) {
+    console.log("Error creating user:", error);
+    res.status(500).json({ status: false, error: "Failed to create user" });
+  }
 };
 
-export const checkPostData = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        console.log(req.body);
-        const userData = await adminModel.findOne({ email, password });
-        console.log(userData);
-
-        if (userData) {
-            return res.json({message : 'user successfully login'})
-        } else {
-            return res.status(400).send({  message: "user invalid" });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send({  message: 'Server error while logging in' });
-    }
+// export const getAdminUser = async (req, res) => {
+//   try {
+//     const data = await User.find();
+//     return res.status(200).send({ status: true, data: data });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({ status: false, message: err.message });
+//   }
+// };
+export const getAdminUser = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ status: true, data: users });
+  } catch (error) {
+    console.log("Error fetching users:", error);
+    res.status(500).json({ status: false, error: "Failed to fetch users" });
+  }
 };
 
+// export const updateAdminUser = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const data = await User.findByIdAndUpdate(userId, req.body, {
+//       upsert: true,
+//       new: true,
+//     });
+//     return res.status(200).send({ status: true, data: data });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({ status: false, message: err.message });
+//   }
+// };
+
+export const updateAdminUser = async (req, res) => {
+  const { userName, password, commission, status } = req.body;
+  const { userId } = req.params;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { userName, password, commission, status },
+      { new: true }
+    );
+    res.status(200).json({ status: true, user: updatedUser });
+  } catch (error) {
+    console.log("Error updating user:", error);
+    res.status(500).json({ status: false, error: "Failed to update user" });
+  }
+};
+
+
+// export const deleteAdminUser = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const user = await User.findByIdAndDelete(userId);
+
+//     if (!user) {
+//       return res.status(404).send({ status: false, message: 'User not found' });
+//     }
+
+//     return res.status(200).send({ status: true, message: 'User deleted successfully' });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({ status: false, message: 'Error deleting user' });
+//   }
+// };
+
+export const deleteAdminUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    await User.findByIdAndDelete(userId);
+    res.status(200).json({ status: true, message: "User deleted successfully" });
+  } catch (error) {
+    console.log("Error deleting user:", error);
+    res.status(500).json({ status: false, error: "Failed to delete user" });
+  }
+};
 

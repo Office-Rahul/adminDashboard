@@ -8,6 +8,6 @@ const adminSchema = new mongoose.Schema({
     password : {type:String , require:true},
 })
 
-const adminModel = mongoose.model('adminPanel' , adminSchema)
+const adminUser = mongoose.model('adminPanel' , adminSchema)
 
-export default adminModel
+export default adminUser
