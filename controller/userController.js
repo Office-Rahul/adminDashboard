@@ -1,4 +1,4 @@
-import User from "../models/userController.js";
+import User from "../models/userModel.js";
 
 // export const createAdminUser = async (req, res) => {
 //   try {
