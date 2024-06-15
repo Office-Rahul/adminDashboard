@@ -8,10 +8,7 @@ import route from "../routes/route.js";
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/adminDashboard", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb://localhost:27017/adminDashboard")
   .then(() => {
     console.log("MongoDB connected");
   })

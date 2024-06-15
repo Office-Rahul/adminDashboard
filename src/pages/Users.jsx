@@ -64,39 +64,6 @@ const User = () => {
       console.log("Error adding/updating user:", error);
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     // Assuming usersToAdd is an array of objects containing user information
-  //     const promises = usersToAdd.map(user =>
-  //       axios.post("http://localhost:8000/createAdminUser", {
-  //         userName: user.userName,
-  //         password: user.password,
-  //         commission: user.commission,
-  //       })
-  //     );
-  
-  //     const results = await Promise.all(promises);
-  
-  //     // Check which requests were successful
-  //     const successfulAdds = results.filter(res => res.data.status === true);
-  
-  //     if (successfulAdds.length === usersToAdd.length) {
-  //       alert("All users added successfully");
-  //       fetchData(); // Refresh user list after adding users
-  //       setUsersToAdd([]); // Clear usersToAdd state
-  //     } else {
-  //       alert("Some users failed to add. Please try again.");
-  //       // Optionally, handle the case where some users were not added successfully
-  //       // You might want to display which users failed and allow the user to retry
-  //     }
-  //   } catch (error) {
-  //     console.log("Error adding users:", error);
-  //     // Handle errors such as network issues, server errors, etc.
-  //   }
-  // };
-
-
 
   const handleEdit = (user) => {
     setUserName(user.userName);

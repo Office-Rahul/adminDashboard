@@ -1,7 +1,8 @@
-import User from "../models/userModel.js";
+import distributor from "../models/distributorModel.js";
 
 
-export const createAdminUser = async (req, res) => {
+
+export const createDistributor = async (req, res) => {
   try {
     const { userName, password, commission } = req.body;
 
@@ -10,7 +11,7 @@ export const createAdminUser = async (req, res) => {
         .status(400)
         .send({ status: false, message: "all fields are required" });
     }
-    const data = await User.create(req.body);
+    const data = await distributor.create(req.body);
     res.status(201).send({ status: true, data: data });
   } catch (error) {
     console.log("Error creating user:", error);
@@ -19,9 +20,9 @@ export const createAdminUser = async (req, res) => {
 };
 
 
-export const getAdminUser = async (req, res) => {
+export const getDistributor = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await distributor.find();
     res.status(200).json({ status: true, data: users });
   } catch (error) {
     console.log("Error fetching users:", error);
@@ -31,11 +32,11 @@ export const getAdminUser = async (req, res) => {
 
 
 
-export const updateAdminUser = async (req, res) => {
+export const updateDistributor = async (req, res) => {
   // const { userName, password, commission, status } = req.body;
   try {
     const { userId } = req.params;
-    const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
+    const updatedUser = await distributor.findByIdAndUpdate(userId, req.body, {
       new: true,
     });
     res.status(200).send({ status: true, user: updatedUser });
@@ -46,10 +47,10 @@ export const updateAdminUser = async (req, res) => {
 };
 
 
-export const deleteAdminUser = async (req, res) => {
+export const deleteDistributor = async (req, res) => {
   const { userId } = req.params;
   try {
-    await User.findByIdAndDelete(userId);
+    await distributor.findByIdAndDelete(userId);
     res
       .status(200)
       .json({ status: true, message: "User deleted successfully" });
